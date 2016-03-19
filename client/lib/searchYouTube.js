@@ -1,5 +1,4 @@
-var searchYouTube = (options, callback) => {
-  // TODO
+var search = (options, callback) => {
   var query = options.query;
   var max = options.max;
   var authKey = options.authKey;
@@ -15,10 +14,17 @@ var searchYouTube = (options, callback) => {
       type: 'video'
     },
     success: function(data) {
-      callback(data.items);
+      if (data.items.length !== 0) {
+        callback(data.items);
+      } else {
+        callback('No results found :(');
+      }
     }
   });
 
 };
 
+var searchYouTube = _.debounce(search, 400);
+
 window.searchYouTube = searchYouTube;
+
