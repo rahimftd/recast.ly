@@ -26,4 +26,11 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App videoData={window.exampleVideoData}/>, document.getElementById('app'));
+searchYouTube({
+  query: 'popular',
+  max: 10,
+  authKey: window.YOUTUBE_API_KEY
+}, function(data) {
+  ReactDOM.render(<App videoData={data}/>, document.getElementById('app'));
+});
+

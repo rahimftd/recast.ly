@@ -11,10 +11,11 @@ var searchYouTube = (options, callback) => {
       q: query,
       maxResults: max,
       part: 'snippet',
-      key: authKey
+      key: authKey,
+      type: 'video'
     },
     success: function(data) {
-      console.log(data);
+      callback(data.items);
     }
   });
 
